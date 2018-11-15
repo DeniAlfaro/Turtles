@@ -22,16 +22,30 @@ namespace Turtles
     /// </summary>
     public partial class MainWindow : Window
     {
-        /*enum EstadoJuego { Gameplay, Gameover };
-        EstadoJuego estadoActual = EstadoJuego.Gameplay;*/
+        Stopwatch stopwatch;
+        TimeSpan tiempoAnterior;
 
         enum Direccion { Arriba, Abajo, Ninguna };
         Direccion direccionTurtle = Direccion.Abajo;
+
+        double velocidadTurtle = 50;
 
         public MainWindow()
         {
             InitializeComponent();
             miCanvas.Focus();
+
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
+            tiempoAnterior = stopwatch.Elapsed;
+            
+            // 1. establecer instrucciones
+            ThreadStart threadStart = new ThreadStart(actualizar);
+            // 2. inicializar el Thread
+            Thread threadMoverEnemigos = new Thread(threadStart);
+            // 3. ejecutar el Thread
+            threadMoverEnemigos.Start();
+
         }
 
         void moverTurtle(TimeSpan deltaTime)
@@ -40,13 +54,33 @@ namespace Turtles
             switch (direccionTurtle)
             {
                 case Direccion.Arriba:
-                    Canvas.SetTop(imgTurtle, topTurtleActual - 20);
+                    Canvas.SetTop(imgTurtle,  topTurtleActual - (velocidadTurtle * deltaTime.TotalSeconds));
                     break;
                 case Direccion.Abajo:
-                    Canvas.SetTop(imgTurtle, topTurtleActual + 20);
+                    Canvas.SetTop(imgTurtle, topTurtleActual + (velocidadTurtle * deltaTime.TotalSeconds));
                     break;
                 default:
                     break;
+            }
+        }
+
+        void actualizar()
+        {
+            while (true)
+            {
+                Dispatcher.Invoke(
+                () =>
+                {
+                    var tiempoActual = stopwatch.Elapsed;
+                    var deltaTime = tiempoActual - tiempoAnterior;
+
+                    if (estadoActual == EstadoJuego.Gameplay)
+                    {
+                        moverJugador(deltaTime);
+                    }
+
+                    tiempoAnterior = tiempoActual;
+                });
             }
         }
 
