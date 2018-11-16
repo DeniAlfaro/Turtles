@@ -25,6 +25,9 @@ namespace Turtles
         Stopwatch stopwatch;
         TimeSpan tiempoAnterior;
 
+        enum EstadoJuego { Gameplay, Gameover };
+        EstadoJuego estadoActual = EstadoJuego.Gameplay;
+
         enum Direccion { Arriba, Abajo, Ninguna };
         Direccion direccionTurtle = Direccion.Abajo;
 
@@ -76,7 +79,7 @@ namespace Turtles
 
                     if (estadoActual == EstadoJuego.Gameplay)
                     {
-                        moverJugador(deltaTime);
+                        moverTurtle(deltaTime);
                     }
 
                     tiempoAnterior = tiempoActual;
