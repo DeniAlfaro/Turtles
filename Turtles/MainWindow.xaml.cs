@@ -31,7 +31,11 @@ namespace Turtles
         enum Direccion { Arriba, Abajo, Ninguna };
         Direccion direccionTurtle = Direccion.Abajo;
 
-        double velocidadTurtle = 50;
+        double velocidadTurtle = 100;
+
+        double brincoPixeles = 50;
+
+        double velocidadSalto = 4;
 
         public MainWindow()
         {
@@ -56,8 +60,17 @@ namespace Turtles
             double topTurtleActual = Canvas.GetTop(imgTurtle);
             switch (direccionTurtle)
             {
-                case Direccion.Arriba:
-                    Canvas.SetTop(imgTurtle,  topTurtleActual - (velocidadTurtle * deltaTime.TotalSeconds));
+
+                case Direccion.Arriba: 
+                    double cantidadMovimiento = ((brincoPixeles * deltaTime.TotalSeconds) * velocidadSalto);
+                    cantidadSalto += cantidadMovimiento;
+                    if (cantidadSalto <= brincoPixeles)
+                    {
+                        Canvas.SetTop(imgTurtle, topTurtleActual - cantidadMovimiento);
+                    } else
+                    {
+                        direccionTurtle = Direccion.Abajo;
+                    }
                     break;
                 case Direccion.Abajo:
                     Canvas.SetTop(imgTurtle, topTurtleActual + (velocidadTurtle * deltaTime.TotalSeconds));
@@ -80,6 +93,13 @@ namespace Turtles
                     if (estadoActual == EstadoJuego.Gameplay)
                     {
                         moverTurtle(deltaTime);
+                        //AQUI ESTA EL MOVIMIENTO DE LOS POPOTES
+                        double leftPopote1Actual = Canvas.GetLeft(popote1);
+                        Canvas.SetLeft(popote1, leftPopote1Actual - (200 * deltaTime.TotalSeconds));
+                        if (Canvas.GetLeft(popote1) <= -100)
+                        {
+                            Canvas.SetLeft(popote1, 800);
+                        }
                     }
 
                     tiempoAnterior = tiempoActual;
@@ -91,16 +111,22 @@ namespace Turtles
         {
             if (e.Key == Key.Space)
             {
-                direccionTurtle = Direccion.Arriba;
+                if (direccionTurtle != Direccion.Arriba)
+                {
+                    direccionTurtle = Direccion.Arriba;
+                    cantidadSalto = 0;
+                }
             }
         }
 
+        double cantidadSalto = 0;
         private void miCanvas_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Space && direccionTurtle == Direccion.Arriba)
+            /*if (e.Key == Key.Space && direccionTurtle == Direccion.Arriba)
             {
                 direccionTurtle = Direccion.Abajo;
-            }
+
+            }*/
         }
     }
 }

@@ -95,6 +95,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="fondo 2.png" />
+    <Resource Include="Artboard 1 copy 3.png" />
+    <Resource Include="Artboard 8 copy 2.png" />
+    <Resource Include="Artboard 8 copy 5.png" />
+    <Resource Include="Artboard 8 copy 6.png" />
+    <Resource Include="Artboard 8 copy 7.png" />
+    <Resource Include="Artboard 8.png" />
     <Content Include="turtle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
