@@ -73,7 +73,11 @@ namespace Turtles
                     }
                     break;
                 case Direccion.Abajo:
-                    Canvas.SetTop(imgTurtle, topTurtleActual + (velocidadTurtle * deltaTime.TotalSeconds));
+                    double nuevaPosicion = topTurtleActual + (velocidadTurtle * deltaTime.TotalSeconds);
+                    if (nuevaPosicion + imgTurtle.Width <= 450)
+                    {
+                        Canvas.SetTop(imgTurtle, nuevaPosicion);
+                    }
                     break;
                 default:
                     break;
@@ -93,17 +97,60 @@ namespace Turtles
                     if (estadoActual == EstadoJuego.Gameplay)
                     {
                         moverTurtle(deltaTime);
-                        //AQUI ESTA EL MOVIMIENTO DE LOS POPOTES
-                        double leftPopote1Actual = Canvas.GetLeft(popote1);
-                        Canvas.SetLeft(popote1, leftPopote1Actual - (200 * deltaTime.TotalSeconds));
-                        if (Canvas.GetLeft(popote1) <= -100)
-                        {
-                            Canvas.SetLeft(popote1, 800);
-                        }
+                        MovimientoPopote(deltaTime);
+
+
                     }
 
                     tiempoAnterior = tiempoActual;
                 });
+            }
+        }
+
+        void MovimientoPopote (TimeSpan deltaTime)
+        {
+            //AQUI ESTA EL MOVIMIENTO DE LOS POPOTES
+
+            double leftPopote1Actual = Canvas.GetLeft(popote1);
+            Canvas.SetLeft(popote1, leftPopote1Actual - (100 * deltaTime.TotalSeconds));
+            if (Canvas.GetLeft(popote1) <= -100)
+            {
+                Canvas.SetLeft(popote1, 800);
+            }
+
+            double leftPopote2Actual = Canvas.GetLeft(popote2);
+            Canvas.SetLeft(popote2, leftPopote2Actual - (100 * deltaTime.TotalSeconds));
+            if (Canvas.GetLeft(popote2) <= -100)
+            {
+                Canvas.SetLeft(popote2, 800);
+            }
+
+            double leftPopote3Actual = Canvas.GetLeft(popote3);
+            Canvas.SetLeft(popote3, leftPopote3Actual - (100 * deltaTime.TotalSeconds));
+            if (Canvas.GetLeft(popote3) <= -100)
+            {
+                Canvas.SetLeft(popote3, 800);
+            }
+
+            double leftPopote4Actual = Canvas.GetLeft(popote4);
+            Canvas.SetLeft(popote4, leftPopote4Actual - (100 * deltaTime.TotalSeconds));
+            if (Canvas.GetLeft(popote4) <= -100)
+            {
+                Canvas.SetLeft(popote4, 800);
+            }
+
+            double leftPopote5Actual = Canvas.GetLeft(popote5);
+            Canvas.SetLeft(popote5, leftPopote5Actual - (100 * deltaTime.TotalSeconds));
+            if (Canvas.GetLeft(popote5) <= -100)
+            {
+                Canvas.SetLeft(popote5, 800);
+            }
+
+            double leftPopote6Actual = Canvas.GetLeft(popote6);
+            Canvas.SetLeft(popote6, leftPopote6Actual - (100 * deltaTime.TotalSeconds));
+            if (Canvas.GetLeft(popote6) <= -100)
+            {
+                Canvas.SetLeft(popote6, 800);
             }
         }
 
