@@ -100,6 +100,19 @@ namespace Turtles
                         MovimientoPopote(deltaTime);
 
 
+                        /*double xTurtle = Canvas.GetLeft(imgTurtle);
+                        double xCelular = Canvas.GetLeft(imgCelular);
+                        double yTurtle = Canvas.GetTop(imgTurtle);
+                        double yCelular = Canvas.GetTop(imgCelular);
+
+                        if (xCelular + imgCelular.Width >= xTurtle && xCelular <= xTurtle + imgTurtle.Width &&
+                            yCelular + imgCelular.Height >= yTurtle && yCelular <= yTurtle + imgTurtle.Height)
+                        {
+                            lblcolision.Text = "HAY COLISION!";
+                            estadoActual = EstadoJuego.Gameover;
+                            miCanvas.Visibility = Visibility.Collapsed;
+                            canvasGameOver.Visibility = Visibility.Visible;
+                        }*/
                     }
 
                     tiempoAnterior = tiempoActual;
