@@ -11,9 +11,9 @@
             <Image Source="fondo 2.png" Height="445" Width="792" Name="imgFondo2"></Image>
             <Image Name="imgTurtle" Source="turtle.png" Width="47" Height="30" Canvas.Left="174" Canvas.Top="182"></Image>
             <Image Source="Artboard 1 copy 3.png" Name="popote1" Height="212" Width="40" Canvas.Left="142" Canvas.Top="295" Stretch="Fill"></Image>
-            <Image Source="Artboard 8 copy 2.png" Name="popote2" Height="221" Width="93" Canvas.Left="622" Canvas.Top="-56" Stretch="Fill"></Image>
-            <Image Source="Artboard 8 copy 5.png" Name="popote3" Height="202" Width="85" Canvas.Left="33" Canvas.Top="-27" Stretch="Fill"/>
-            <Image Source="Artboard 8 copy 6.png" Name="popote4" Height="198" Width="83" Canvas.Left="690" Canvas.Top="263" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image Source="Artboard 8 copy 2.png" Name="popote2" Height="192" Width="81" Canvas.Left="634" Canvas.Top="-66" Stretch="Fill"></Image>
+            <Image Source="Artboard 8 copy 5.png" Name="popote3" Height="202" Width="85" Canvas.Left="37" Canvas.Top="-59" Stretch="Fill"/>
+            <Image Source="Artboard 8 copy 6.png" Name="popote4" Height="198" Width="83" Canvas.Left="690" Canvas.Top="265" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -23,7 +23,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Source="Artboard 8 copy 7.png" Name="popote5" Height="213" Width="89" Canvas.Left="404" Canvas.Top="250" RenderTransformOrigin="0.5,0.5">
+            <Image Source="Artboard 8 copy 7.png" Name="popote5" Height="204" Width="85" Canvas.Left="404" Canvas.Top="297" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -33,10 +33,10 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Source="Artboard 8.png" Name="popote6" Canvas.Left="332" Canvas.Top="-72" Height="215" Width="91"></Image>
-            <Canvas Name="canvasGameOver" Visibility="Collapsed">
-                <Image Source="game over.png" Name="imgGameOver"></Image>
-            </Canvas>
+            <Image Source="Artboard 8.png" Name="popote6" Canvas.Left="339" Canvas.Top="-34" Height="198" Width="84"></Image>
+        </Canvas>
+        <Canvas Name="canvasGameOver" Visibility="Collapsed">
+            <Image Source="game over.png" Name="imgGameOver" Height="447" Width="794"></Image>
         </Canvas>
     </Canvas>
 

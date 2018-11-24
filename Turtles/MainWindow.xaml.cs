@@ -34,11 +34,11 @@ namespace Turtles
         enum Direccion { Arriba, Abajo, Ninguna };
         Direccion direccionTurtle = Direccion.Abajo;
 
-        double velocidadTurtle = 100;
+        double velocidadTurtle = 75;
 
-        double brincoPixeles = 100;
+        double brincoPixeles = 50;
 
-        double velocidadSalto = 7;
+        double velocidadSalto = 5;
 
         public MainWindow()
         {
