@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Tortuga.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,6 +104,7 @@
     <Resource Include="Artboard 8 copy 6.png" />
     <Resource Include="Artboard 8 copy 7.png" />
     <Resource Include="Artboard 8.png" />
+    <Resource Include="game over.png" />
     <Content Include="turtle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -15,15 +15,14 @@ using System.Windows.Shapes;
 
 namespace Turtles
 {
-    public class Popotes
+    public class Tortuga
     {
-        public Image Imagen { get; set; }
+        Image Imagen { get; set; }
 
-        public Popotes(Image imagen)
+        public Tortuga(Image imagen)
         {
             Imagen = imagen;
         }
+
     }
-
-
 }

@@ -25,6 +25,9 @@ namespace Turtles
         Stopwatch stopwatch;
         TimeSpan tiempoAnterior;
 
+        Tortuga tortuga;
+        List<Popotes> popotes = new List<Popotes>();
+       
         enum EstadoJuego { Gameplay, Gameover };
         EstadoJuego estadoActual = EstadoJuego.Gameplay;
 
@@ -33,9 +36,9 @@ namespace Turtles
 
         double velocidadTurtle = 100;
 
-        double brincoPixeles = 50;
+        double brincoPixeles = 100;
 
-        double velocidadSalto = 4;
+        double velocidadSalto = 7;
 
         public MainWindow()
         {
@@ -45,13 +48,21 @@ namespace Turtles
             stopwatch = new Stopwatch();
             stopwatch.Start();
             tiempoAnterior = stopwatch.Elapsed;
-            
+
+            tortuga = new Tortuga(imgTurtle);
+            popotes.Add(new Popotes(popote1));
+            popotes.Add(new Popotes(popote2));
+            popotes.Add(new Popotes(popote3));
+            popotes.Add(new Popotes(popote4));
+            popotes.Add(new Popotes(popote5));
+            popotes.Add(new Popotes(popote6));
+
             // 1. establecer instrucciones
             ThreadStart threadStart = new ThreadStart(actualizar);
             // 2. inicializar el Thread
-            Thread threadMoverEnemigos = new Thread(threadStart);
+            Thread threadMover = new Thread(threadStart);
             // 3. ejecutar el Thread
-            threadMoverEnemigos.Start();
+            threadMover.Start();
 
         }
 
@@ -99,23 +110,25 @@ namespace Turtles
                         moverTurtle(deltaTime);
                         MovimientoPopote(deltaTime);
 
-
-                        /*double xTurtle = Canvas.GetLeft(imgTurtle);
-                        double xCelular = Canvas.GetLeft(imgCelular);
-                        double yTurtle = Canvas.GetTop(imgTurtle);
-                        double yCelular = Canvas.GetTop(imgCelular);
-
-                        if (xCelular + imgCelular.Width >= xTurtle && xCelular <= xTurtle + imgTurtle.Width &&
-                            yCelular + imgCelular.Height >= yTurtle && yCelular <= yTurtle + imgTurtle.Height)
+                        //colisiones
+                        foreach (Popotes popote in popotes)
                         {
-                            lblcolision.Text = "HAY COLISION!";
-                            estadoActual = EstadoJuego.Gameover;
-                            miCanvas.Visibility = Visibility.Collapsed;
-                            canvasGameOver.Visibility = Visibility.Visible;
-                        }*/
-                    }
+                            double xTurtle = Canvas.GetLeft(imgTurtle);
+                            double xPopotes = Canvas.GetLeft(popote.Imagen);
+                            double yTurtle = Canvas.GetTop(imgTurtle);
+                            double yPopotes = Canvas.GetTop(popote.Imagen);
 
-                    tiempoAnterior = tiempoActual;
+                            if (xPopotes + popote.Imagen.Width >= xTurtle && xPopotes <= xTurtle + imgTurtle.Width &&
+                                yPopotes + popote.Imagen.Height >= yTurtle && yPopotes <= yTurtle + imgTurtle.Height)
+                            {
+                                estadoActual = EstadoJuego.Gameover;
+                                miCanvas.Visibility = Visibility.Collapsed;
+                                canvasGameOver.Visibility = Visibility.Visible;
+                            }
+                        }
+
+                        tiempoAnterior = tiempoActual;
+                    }
                 });
             }
         }
