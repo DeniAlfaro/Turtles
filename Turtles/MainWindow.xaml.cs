@@ -27,6 +27,7 @@ namespace Turtles
 
         Tortuga tortuga;
         List<Popotes> popotes = new List<Popotes>();
+        int score = 0;
        
         enum EstadoJuego { Gameplay, Gameover };
         EstadoJuego estadoActual = EstadoJuego.Gameplay;
@@ -178,6 +179,16 @@ namespace Turtles
             {
                 Canvas.SetLeft(popote6, 800);
             }
+
+            foreach(Popotes popote in popotes){
+                if (Canvas.GetLeft(popote.Imagen) <= 170 && Canvas.GetLeft(popote.Imagen) >= 169.001)
+                {
+                    score = score + 1;
+                    lblscore.Text = score.ToString();
+                }
+
+            }
+
         }
 
         private void miCanvas_KeyDown(object sender, KeyEventArgs e)
