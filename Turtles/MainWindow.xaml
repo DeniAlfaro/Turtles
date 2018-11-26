@@ -34,12 +34,18 @@
                 </Image.RenderTransform>
             </Image>
             <Image Source="Artboard 8.png" Name="popote6" Canvas.Left="339" Canvas.Top="-34" Height="198" Width="84"></Image>
+            <Image Source="moneda.png" Name="Moneda1" Canvas.Left="525" Canvas.Top="250" Height="26" Width="30"></Image>
+            <Image Source="moneda.png" Name="Moneda2" Canvas.Left="970" Canvas.Top="155" Height="26" Width="30"></Image>
+            <Image Source="moneda.png" Name="Moneda3" Canvas.Left="1220" Canvas.Top="224" Height="26" Width="30"></Image>
+
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="SCORE" FontFamily="OCR A Std" Canvas.Left="10" Canvas.Top="10" Foreground="#FFFFD64C" Width="65" FontSize="14"/>
+            <TextBlock x:Name="lblscore" TextWrapping="Wrap" Text="0000" FontFamily="OCR A Std" Canvas.Left="10" Canvas.Top="24" Foreground="#FFFDD13C" Width="55" FontSize="14"/>
+            <TextBlock x:Name="lblmonedas" TextWrapping="Wrap" Text="1" FontFamily="OCR A Std" Canvas.Left="155" Canvas.Top="15" Foreground="#FFFDD13C" Width="55" FontSize="14"/>
         </Canvas>
         <Canvas Name="canvasGameOver" Visibility="Collapsed">
             <Image Source="game over.png" Name="imgGameOver" Height="447" Width="794"></Image>
         </Canvas>
-        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="SCORE" FontFamily="OCR A Std" Canvas.Left="10" Canvas.Top="10" Foreground="#FFFFD64C" Width="65" FontSize="14"/>
-        <TextBlock x:Name="lblscore" TextWrapping="Wrap" Text="0000" FontFamily="OCR A Std" Canvas.Left="10" Canvas.Top="24" Foreground="#FFFDD13C" Width="55" FontSize="14"/>
+
     </Canvas>
 
 </Window>

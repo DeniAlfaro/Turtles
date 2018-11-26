@@ -28,6 +28,8 @@ namespace Turtles
         Tortuga tortuga;
         List<Popotes> popotes = new List<Popotes>();
         int score = 0;
+        List<Moneda> monedas = new List<Moneda>();
+        int contadormonedas = 0;
        
         enum EstadoJuego { Gameplay, Gameover };
         EstadoJuego estadoActual = EstadoJuego.Gameplay;
@@ -35,7 +37,7 @@ namespace Turtles
         enum Direccion { Arriba, Abajo, Ninguna };
         Direccion direccionTurtle = Direccion.Abajo;
 
-        double velocidadTurtle = 75;
+        double velocidadTurtle = 70;
 
         double brincoPixeles = 50;
 
@@ -57,6 +59,9 @@ namespace Turtles
             popotes.Add(new Popotes(popote4));
             popotes.Add(new Popotes(popote5));
             popotes.Add(new Popotes(popote6));
+            monedas.Add(new Moneda(Moneda1));
+            monedas.Add(new Moneda(Moneda2));
+            monedas.Add(new Moneda(Moneda3));
 
             // 1. establecer instrucciones
             ThreadStart threadStart = new ThreadStart(actualizar);
@@ -127,6 +132,7 @@ namespace Turtles
                                 canvasGameOver.Visibility = Visibility.Visible;
                             }
                         }
+                        
 
                         tiempoAnterior = tiempoActual;
                     }
@@ -180,37 +186,78 @@ namespace Turtles
                 Canvas.SetLeft(popote6, 800);
             }
 
-            foreach(Popotes popote in popotes){
-                if (Canvas.GetLeft(popote.Imagen) <= 170 && Canvas.GetLeft(popote.Imagen) >= 169.001)
+            double leftMoneda1Actual = Canvas.GetLeft(Moneda1);
+            Canvas.SetLeft(Moneda1, leftMoneda1Actual - (100 * deltaTime.TotalSeconds));
+            double leftMoneda2Actual = Canvas.GetLeft(Moneda2);
+            Canvas.SetLeft(Moneda2, leftMoneda2Actual - (100 * deltaTime.TotalSeconds));
+            double leftMoneda3Actual = Canvas.GetLeft(Moneda3);
+            Canvas.SetLeft(Moneda3, leftMoneda3Actual - (100 * deltaTime.TotalSeconds));
+
+            foreach (Moneda moneda in monedas){ 
+            if (Canvas.GetLeft(moneda.Imagen) <= -100)
+            {
+                Canvas.SetLeft(moneda.Imagen, 1000);
+            }
+            }
+
+
+            foreach (Popotes popote in popotes){
+                if (Canvas.GetLeft(popote.Imagen) <= 170 && Canvas.GetLeft(popote.Imagen) >= 169.99)
                 {
-                    score = score + 1;
+                    score = score + 5;
                     lblscore.Text = score.ToString();
                 }
 
             }
 
+            foreach (Moneda moneda in monedas)
+            {
+                double xTurtle = Canvas.GetLeft(imgTurtle);
+                double xMonedas = Canvas.GetLeft(moneda.Imagen);
+                double yTurtle = Canvas.GetTop(imgTurtle);
+                double yMonedas = Canvas.GetTop(moneda.Imagen);
+
+                if (xMonedas + moneda.Imagen.Width >= xTurtle && xMonedas <= xTurtle + imgTurtle.Width && yMonedas + moneda.Imagen.Height >= yTurtle && yMonedas <= yTurtle + imgTurtle.Height)
+                {
+                    moneda.Imagen.Visibility = Visibility.Collapsed;
+                    contadormonedas = contadormonedas + 1;
+                    lblmonedas.Text = contadormonedas.ToString();
+                }
+
+                if(xMonedas >= 799)
+                {
+                    moneda.Imagen.Visibility = Visibility.Visible;
+                }
+            }
+
         }
 
+       
         private void miCanvas_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.Key == Key.Space)
             {
                 if (direccionTurtle != Direccion.Arriba)
                 {
                     direccionTurtle = Direccion.Arriba;
                     cantidadSalto = 0;
+                    tortuga.CambiarDireccion(Tortuga.Direccion.Arriba);
+                    
                 }
             }
+           
         }
 
+     
         double cantidadSalto = 0;
         private void miCanvas_KeyUp(object sender, KeyEventArgs e)
         {
-            /*if (e.Key == Key.Space && direccionTurtle == Direccion.Arriba)
+            if (e.Key == Key.Space && direccionTurtle == Direccion.Arriba)
             {
-                direccionTurtle = Direccion.Abajo;
-
-            }*/
+             
+                tortuga.CambiarDireccion(Tortuga.Direccion.Abajo);
+            }
         }
     }
 }

@@ -18,10 +18,33 @@ namespace Turtles
     public class Tortuga
     {
         Image Imagen { get; set; }
+        List<BitmapImage> arriba = new List<BitmapImage>();
+        List<BitmapImage> abajo = new List<BitmapImage>();
+
+        public enum Direccion { Izquierda, Derecha, Arriba, Abajo };
+        Direccion DireccionActual { get; set; }
 
         public Tortuga(Image imagen)
         {
             Imagen = imagen;
+
+            arriba.Add(new BitmapImage(new Uri("tortugaArriba.png", UriKind.Relative)));
+            abajo.Add(new BitmapImage(new Uri("turtle.png", UriKind.Relative)));
+        }
+
+        public void CambiarDireccion(Direccion nuevaDireccion)
+        {
+            DireccionActual = nuevaDireccion;
+            switch (DireccionActual)
+            {
+                case Direccion.Abajo:
+                    Imagen.Source = abajo[0];
+                    break;
+                case Direccion.Arriba:
+                    Imagen.Source = arriba[0];
+                    break;
+            
+            }
         }
 
     }
