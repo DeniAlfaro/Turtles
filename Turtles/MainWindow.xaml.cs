@@ -103,6 +103,7 @@ namespace Turtles
 
         void actualizar()
         {
+            
             while (true)
             {
                 Dispatcher.Invoke(
@@ -113,6 +114,7 @@ namespace Turtles
 
                     if (estadoActual == EstadoJuego.Gameplay)
                     {
+                         
                         moverTurtle(deltaTime);
                         MovimientoPopote(deltaTime);
 
@@ -135,12 +137,16 @@ namespace Turtles
 
                         if (score >= 100)
                         {
+                            lblNivel1.Visibility = Visibility.Collapsed;
+                            lblNivel2.Visibility = Visibility.Visible;
                             imgFondo2.Visibility = Visibility.Collapsed;
                             imgFondo1.Visibility = Visibility.Visible;
                         }
 
                         if (score >= 200)
                         {
+                            lblNivel2.Visibility = Visibility.Collapsed;
+                            lblNivel3.Visibility = Visibility.Visible;
                             imgFondo1.Visibility = Visibility.Collapsed;
                             imgFondo3.Visibility = Visibility.Visible;
                         }
@@ -148,6 +154,7 @@ namespace Turtles
                         tiempoAnterior = tiempoActual;
                     }
                 });
+            
             }
         }
 
@@ -269,6 +276,33 @@ namespace Turtles
              
                 tortuga.CambiarDireccion(Tortuga.Direccion.Abajo);
             }
+        }
+
+        private void btnJugar_Click(object sender, RoutedEventArgs e)
+        {
+            
+            canvasStart.Visibility = Visibility.Collapsed;
+            canvasChoosePlayer.Visibility = Visibility.Visible;
+        }
+
+        private void btnPacoyo_Click(object sender, RoutedEventArgs e)
+        {
+            canvasChoosePlayer.Visibility = Visibility.Collapsed;
+            miCanvas.Visibility = Visibility.Visible;
+            
+
+        }
+
+        private void btnMazapan_Click(object sender, RoutedEventArgs e)
+        {
+            canvasChoosePlayer.Visibility = Visibility.Collapsed;
+            miCanvas.Visibility = Visibility.Visible;
+        }
+
+        private void btnQuesadilla_Click(object sender, RoutedEventArgs e)
+        {
+            canvasChoosePlayer.Visibility = Visibility.Collapsed;
+            miCanvas.Visibility = Visibility.Visible;
         }
     }
 }

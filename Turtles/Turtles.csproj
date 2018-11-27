@@ -110,6 +110,8 @@
     <Resource Include="tortugaArriba.png" />
     <Resource Include="fondo1.png" />
     <Resource Include="fondo3.png" />
+    <Resource Include="choose player.png" />
+    <Resource Include="Start.png" />
     <Content Include="turtle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
