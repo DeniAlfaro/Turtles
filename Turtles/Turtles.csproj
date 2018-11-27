@@ -108,6 +108,8 @@
     <Resource Include="game over.png" />
     <Resource Include="moneda.png" />
     <Resource Include="tortugaArriba.png" />
+    <Resource Include="fondo1.png" />
+    <Resource Include="fondo3.png" />
     <Content Include="turtle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

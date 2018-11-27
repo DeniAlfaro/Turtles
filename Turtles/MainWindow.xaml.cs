@@ -132,7 +132,18 @@ namespace Turtles
                                 canvasGameOver.Visibility = Visibility.Visible;
                             }
                         }
-                        
+
+                        if (score >= 100)
+                        {
+                            imgFondo2.Visibility = Visibility.Collapsed;
+                            imgFondo1.Visibility = Visibility.Visible;
+                        }
+
+                        if (score >= 200)
+                        {
+                            imgFondo1.Visibility = Visibility.Collapsed;
+                            imgFondo3.Visibility = Visibility.Visible;
+                        }
 
                         tiempoAnterior = tiempoActual;
                     }
@@ -204,7 +215,7 @@ namespace Turtles
             foreach (Popotes popote in popotes){
                 if (Canvas.GetLeft(popote.Imagen) <= 170 && Canvas.GetLeft(popote.Imagen) >= 169.99)
                 {
-                    score = score + 5;
+                    score = score + 50;
                     lblscore.Text = score.ToString();
                 }
 
