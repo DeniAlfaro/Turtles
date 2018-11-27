@@ -55,7 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Mazapan.cs" />
     <Compile Include="Moneda.cs" />
+    <Compile Include="Pacoyo.cs" />
+    <Compile Include="Quesadilla.cs" />
     <Compile Include="Tortuga.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +115,12 @@
     <Resource Include="fondo3.png" />
     <Resource Include="choose player.png" />
     <Resource Include="Start.png" />
+    <Resource Include="tortuga1Arriba.png" />
+    <Resource Include="tortuga2Arriba.png" />
+    <Resource Include="tortuga3Arriba.png" />
+    <Resource Include="tortuga1.png" />
+    <Resource Include="tortuga2.png" />
+    <Resource Include="tortuga3.png" />
     <Content Include="turtle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

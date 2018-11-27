@@ -31,7 +31,7 @@ namespace Turtles
         List<Moneda> monedas = new List<Moneda>();
         int contadormonedas = 0;
        
-        enum EstadoJuego { Gameplay, Gameover };
+        enum EstadoJuego {Menu, Gameplay, Gameover };
         EstadoJuego estadoActual = EstadoJuego.Gameplay;
 
         enum Direccion { Arriba, Abajo, Ninguna };
@@ -52,7 +52,7 @@ namespace Turtles
             stopwatch.Start();
             tiempoAnterior = stopwatch.Elapsed;
 
-            tortuga = new Tortuga(imgTurtle);
+
             popotes.Add(new Popotes(popote1));
             popotes.Add(new Popotes(popote2));
             popotes.Add(new Popotes(popote3));
@@ -62,6 +62,22 @@ namespace Turtles
             monedas.Add(new Moneda(Moneda1));
             monedas.Add(new Moneda(Moneda2));
             monedas.Add(new Moneda(Moneda3));
+
+            Pacoyo pacoyo = new Pacoyo(trampa);
+            lblPacoyo.Text = pacoyo.Name;
+            lblCancionP.Text = pacoyo.Cancion;
+            lblComidap.Text = pacoyo.Comida;
+
+            Mazapan mazapan = new Mazapan(trampa);
+            lblMazapan.Text = mazapan.Name;
+            lblCancionM.Text = mazapan.Cancion;
+            lblComidaM.Text = mazapan.Comida;
+
+            Quesadilla quesadilla = new Quesadilla(trampa);
+            lblQuesadilla.Text = quesadilla.Name;
+            lblCancionQ.Text = quesadilla.Cancion;
+            lblComidaQ.Text = quesadilla.Comida;
+
 
             // 1. establecer instrucciones
             ThreadStart threadStart = new ThreadStart(actualizar);
@@ -114,7 +130,7 @@ namespace Turtles
 
                     if (estadoActual == EstadoJuego.Gameplay)
                     {
-                         
+                        miCanvas.Focus();
                         moverTurtle(deltaTime);
                         MovimientoPopote(deltaTime);
 
@@ -287,22 +303,27 @@ namespace Turtles
 
         private void btnPacoyo_Click(object sender, RoutedEventArgs e)
         {
+            tortuga = new Pacoyo(imgTurtle);
             canvasChoosePlayer.Visibility = Visibility.Collapsed;
             miCanvas.Visibility = Visibility.Visible;
-            
+            estadoActual = EstadoJuego.Gameplay;
 
         }
 
         private void btnMazapan_Click(object sender, RoutedEventArgs e)
         {
+            tortuga = new Mazapan(imgTurtle);
             canvasChoosePlayer.Visibility = Visibility.Collapsed;
             miCanvas.Visibility = Visibility.Visible;
+            estadoActual = EstadoJuego.Gameplay;
         }
 
         private void btnQuesadilla_Click(object sender, RoutedEventArgs e)
         {
+            tortuga = new Quesadilla(imgTurtle);
             canvasChoosePlayer.Visibility = Visibility.Collapsed;
             miCanvas.Visibility = Visibility.Visible;
+            estadoActual = EstadoJuego.Gameplay;
         }
     }
 }
