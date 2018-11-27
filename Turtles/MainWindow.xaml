@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Canvas>
-        <Canvas Name="miCanvas" KeyDown="miCanvas_KeyDown" KeyUp="miCanvas_KeyUp" Focusable="True" Visibility="Collapsed"  >
+        <Canvas Name="miCanvas" KeyDown="miCanvas_KeyDown" KeyUp="miCanvas_KeyUp" Focusable="True" Visibility="Collapsed">
             <Image Source="fondo 2.png" Height="445" Width="792" Name="imgFondo2" Visibility="Visible"></Image>
             <Image Source="fondo1.png" Height="445" Width="792" Name="imgFondo1" Visibility="Collapsed"></Image>
             <Image Source="fondo3.png" Height="445" Width="792" Name="imgFondo3" Visibility="Collapsed"></Image>
             <Image Name="imgTurtle" Source="turtle.png" Width="47" Height="30" Canvas.Left="170" Canvas.Top="75"></Image>
-            <Image Source="Artboard 1 copy 3.png" Name="popote1" Height="212" Width="40" Canvas.Left="794" Canvas.Top="319" Stretch="Fill"></Image>
-            <Image Source="Artboard 8 copy 2.png" Name="popote2" Height="192" Width="81" Canvas.Left="1329" Canvas.Top="-52" Stretch="Fill"></Image>
-            <Image Source="Artboard 8 copy 5.png" Name="popote3" Height="202" Width="85" Canvas.Left="689" Canvas.Top="-35" Stretch="Fill"/>
-            <Image Source="Artboard 8 copy 6.png" Name="popote4" Height="198" Width="83" Canvas.Left="1385" Canvas.Top="279" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image Source="Artboard 1 copy 3.png" Name="popote1" Height="212" Width="40" Canvas.Left="1450" Canvas.Top="319" Stretch="Fill"></Image>
+            <Image Source="Artboard 8 copy 2.png" Name="popote2" Height="192" Width="81" Canvas.Left="1985" Canvas.Top="-52" Stretch="Fill"></Image>
+            <Image Source="Artboard 8 copy 5.png" Name="popote3" Height="202" Width="85" Canvas.Left="1345" Canvas.Top="-35" Stretch="Fill"/>
+            <Image Source="Artboard 8 copy 6.png" Name="popote4" Height="198" Width="83" Canvas.Left="2041" Canvas.Top="279" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -25,7 +25,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Source="Artboard 8 copy 7.png" Name="popote5" Height="204" Width="85" Canvas.Left="1099" Canvas.Top="311" RenderTransformOrigin="0.5,0.5">
+            <Image Source="Artboard 8 copy 7.png" Name="popote5" Height="204" Width="85" Canvas.Left="1755" Canvas.Top="311" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -35,7 +35,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Source="Artboard 8.png" Name="popote6" Canvas.Left="1034" Canvas.Top="-20" Height="198" Width="84"></Image>
+            <Image Source="Artboard 8.png" Name="popote6" Canvas.Left="1690" Canvas.Top="-20" Height="198" Width="84"></Image>
             <TextBlock x:Name="lblNivel1" TextWrapping="Wrap" Text="NIVEL 1" FontFamily="OCR A Std" Canvas.Left="655" Canvas.Top="12" Foreground="#FFFFD64C" Width="105" FontSize="18" Visibility="Visible"/>
             <TextBlock x:Name="lblNivel2" TextWrapping="Wrap" Text="NIVEL 2" FontFamily="OCR A Std" Canvas.Left="675" Canvas.Top="12" Foreground="#FFFFD64C" Width="105" FontSize="18" Visibility="Collapsed"/>
             <TextBlock x:Name="lblNivel3" TextWrapping="Wrap" Text="NIVEL 3" FontFamily="OCR A Std" Canvas.Left="675" Canvas.Top="12" Foreground="#FFFFD64C" Width="105" FontSize="18" Visibility="Collapsed"/>
@@ -53,7 +53,7 @@
             <Image Source="game over.png" Name="imgGameOver" Height="447" Width="794"></Image>
         </Canvas>
 
-        <Canvas Name="canvasChoosePlayer" Visibility="Visible">
+        <Canvas Name="canvasChoosePlayer" Visibility="Collapsed">
             <Image Source="choose player.png" Name="imgChoosePlayer" Height="445" Width="791" Canvas.Top="-16"></Image>
             <Button Click="btnPacoyo_Click" x:Name="btnPacoyo" Width="210" Canvas.Left="42" Canvas.Top="134" Height="246" Background="Transparent" BorderBrush="{x:Null}" Foreground="{x:Null}"></Button>
             <TextBlock x:Name="lblPacoyo" Height="25" TextWrapping="Wrap" Text="NOMBRE" Width="115" Canvas.Left="95" Canvas.Top="230" TextAlignment="Center" FontFamily="OCR A Std" FontSize="18"/>
@@ -76,7 +76,7 @@
             <TextBlock x:Name="lblComidaQ" Height="38" TextWrapping="Wrap" Text="Comida" Width="165" Canvas.Left="555" Canvas.Top="332" FontFamily="OCR A Std" FontSize="14"/>
         </Canvas>
 
-        <Canvas Name="canvasStart" Visibility="Collapsed">
+        <Canvas Name="canvasStart" Visibility="Visible">
             <Image Source="Start.png" Height="447" Width="794" Canvas.Top="-10"></Image>
             <Button x:Name="btnJugar" Click="btnJugar_Click" Content="JUGAR" FontFamily="OCR A Std" Width="200" Canvas.Left="538" Background="Transparent" Canvas.Top="342" Height="67" FontSize="22" BorderBrush="{x:Null}"/>
         </Canvas>

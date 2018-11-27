@@ -32,7 +32,7 @@ namespace Turtles
         int contadormonedas = 0;
        
         enum EstadoJuego {Menu, Gameplay, Gameover };
-        EstadoJuego estadoActual = EstadoJuego.Gameplay;
+        EstadoJuego estadoActual = EstadoJuego.Menu;
 
         enum Direccion { Arriba, Abajo, Ninguna };
         Direccion direccionTurtle = Direccion.Abajo;
@@ -90,30 +90,34 @@ namespace Turtles
 
         void moverTurtle(TimeSpan deltaTime)
         {
-            double topTurtleActual = Canvas.GetTop(imgTurtle);
-            switch (direccionTurtle)
+            if (estadoActual == EstadoJuego.Gameplay)
             {
+                double topTurtleActual = Canvas.GetTop(imgTurtle);
+                switch (direccionTurtle)
+                {
 
-                case Direccion.Arriba: 
-                    double cantidadMovimiento = ((brincoPixeles * deltaTime.TotalSeconds) * velocidadSalto);
-                    cantidadSalto += cantidadMovimiento;
-                    if (cantidadSalto <= brincoPixeles)
-                    {
-                        Canvas.SetTop(imgTurtle, topTurtleActual - cantidadMovimiento);
-                    } else
-                    {
-                        direccionTurtle = Direccion.Abajo;
-                    }
-                    break;
-                case Direccion.Abajo:
-                    double nuevaPosicion = topTurtleActual + (velocidadTurtle * deltaTime.TotalSeconds);
-                    if (nuevaPosicion + imgTurtle.Width <= 450)
-                    {
-                        Canvas.SetTop(imgTurtle, nuevaPosicion);
-                    }
-                    break;
-                default:
-                    break;
+                    case Direccion.Arriba:
+                        double cantidadMovimiento = ((brincoPixeles * deltaTime.TotalSeconds) * velocidadSalto);
+                        cantidadSalto += cantidadMovimiento;
+                        if (cantidadSalto <= brincoPixeles)
+                        {
+                            Canvas.SetTop(imgTurtle, topTurtleActual - cantidadMovimiento);
+                        }
+                        else
+                        {
+                            direccionTurtle = Direccion.Abajo;
+                        }
+                        break;
+                    case Direccion.Abajo:
+                        double nuevaPosicion = topTurtleActual + (velocidadTurtle * deltaTime.TotalSeconds);
+                        if (nuevaPosicion + imgTurtle.Width <= 450)
+                        {
+                            Canvas.SetTop(imgTurtle, nuevaPosicion);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -127,9 +131,9 @@ namespace Turtles
                 {
                     var tiempoActual = stopwatch.Elapsed;
                     var deltaTime = tiempoActual - tiempoAnterior;
-
                     if (estadoActual == EstadoJuego.Gameplay)
                     {
+                     
                         miCanvas.Focus();
                         moverTurtle(deltaTime);
                         MovimientoPopote(deltaTime);
@@ -151,7 +155,7 @@ namespace Turtles
                             }
                         }
 
-                        if (score >= 100)
+                        if (score >= 200)
                         {
                             lblNivel1.Visibility = Visibility.Collapsed;
                             lblNivel2.Visibility = Visibility.Visible;
@@ -159,7 +163,7 @@ namespace Turtles
                             imgFondo1.Visibility = Visibility.Visible;
                         }
 
-                        if (score >= 200)
+                        if (score >= 350)
                         {
                             lblNivel2.Visibility = Visibility.Collapsed;
                             lblNivel3.Visibility = Visibility.Visible;
@@ -177,93 +181,97 @@ namespace Turtles
         void MovimientoPopote (TimeSpan deltaTime)
         {
             //AQUI ESTA EL MOVIMIENTO DE LOS POPOTES
-
-            double leftPopote1Actual = Canvas.GetLeft(popote1);
-            Canvas.SetLeft(popote1, leftPopote1Actual - (100 * deltaTime.TotalSeconds));
-            if (Canvas.GetLeft(popote1) <= -100)
+            if (estadoActual == EstadoJuego.Gameplay)
             {
-                Canvas.SetLeft(popote1, 800);
-            }
 
-            double leftPopote2Actual = Canvas.GetLeft(popote2);
-            Canvas.SetLeft(popote2, leftPopote2Actual - (100 * deltaTime.TotalSeconds));
-            if (Canvas.GetLeft(popote2) <= -100)
-            {
-                Canvas.SetLeft(popote2, 800);
-            }
-
-            double leftPopote3Actual = Canvas.GetLeft(popote3);
-            Canvas.SetLeft(popote3, leftPopote3Actual - (100 * deltaTime.TotalSeconds));
-            if (Canvas.GetLeft(popote3) <= -100)
-            {
-                Canvas.SetLeft(popote3, 800);
-            }
-
-            double leftPopote4Actual = Canvas.GetLeft(popote4);
-            Canvas.SetLeft(popote4, leftPopote4Actual - (100 * deltaTime.TotalSeconds));
-            if (Canvas.GetLeft(popote4) <= -100)
-            {
-                Canvas.SetLeft(popote4, 800);
-            }
-
-            double leftPopote5Actual = Canvas.GetLeft(popote5);
-            Canvas.SetLeft(popote5, leftPopote5Actual - (100 * deltaTime.TotalSeconds));
-            if (Canvas.GetLeft(popote5) <= -100)
-            {
-                Canvas.SetLeft(popote5, 800);
-            }
-
-            double leftPopote6Actual = Canvas.GetLeft(popote6);
-            Canvas.SetLeft(popote6, leftPopote6Actual - (100 * deltaTime.TotalSeconds));
-            if (Canvas.GetLeft(popote6) <= -100)
-            {
-                Canvas.SetLeft(popote6, 800);
-            }
-
-            double leftMoneda1Actual = Canvas.GetLeft(Moneda1);
-            Canvas.SetLeft(Moneda1, leftMoneda1Actual - (100 * deltaTime.TotalSeconds));
-            double leftMoneda2Actual = Canvas.GetLeft(Moneda2);
-            Canvas.SetLeft(Moneda2, leftMoneda2Actual - (100 * deltaTime.TotalSeconds));
-            double leftMoneda3Actual = Canvas.GetLeft(Moneda3);
-            Canvas.SetLeft(Moneda3, leftMoneda3Actual - (100 * deltaTime.TotalSeconds));
-
-            foreach (Moneda moneda in monedas){ 
-            if (Canvas.GetLeft(moneda.Imagen) <= -100)
-            {
-                Canvas.SetLeft(moneda.Imagen, 1000);
-            }
-            }
-
-
-            foreach (Popotes popote in popotes){
-                if (Canvas.GetLeft(popote.Imagen) <= 170 && Canvas.GetLeft(popote.Imagen) >= 169.99)
+                double leftPopote1Actual = Canvas.GetLeft(popote1);
+                Canvas.SetLeft(popote1, leftPopote1Actual - (100 * deltaTime.TotalSeconds));
+                if (Canvas.GetLeft(popote1) <= -100)
                 {
-                    score = score + 50;
-                    lblscore.Text = score.ToString();
+                    Canvas.SetLeft(popote1, 800);
                 }
 
-            }
-
-            foreach (Moneda moneda in monedas)
-            {
-                double xTurtle = Canvas.GetLeft(imgTurtle);
-                double xMonedas = Canvas.GetLeft(moneda.Imagen);
-                double yTurtle = Canvas.GetTop(imgTurtle);
-                double yMonedas = Canvas.GetTop(moneda.Imagen);
-
-                if (xMonedas + moneda.Imagen.Width >= xTurtle && xMonedas <= xTurtle + imgTurtle.Width && yMonedas + moneda.Imagen.Height >= yTurtle && yMonedas <= yTurtle + imgTurtle.Height)
+                double leftPopote2Actual = Canvas.GetLeft(popote2);
+                Canvas.SetLeft(popote2, leftPopote2Actual - (100 * deltaTime.TotalSeconds));
+                if (Canvas.GetLeft(popote2) <= -100)
                 {
-                    moneda.Imagen.Visibility = Visibility.Collapsed;
-                    contadormonedas = contadormonedas + 1;
-                    lblmonedas.Text = contadormonedas.ToString();
+                    Canvas.SetLeft(popote2, 800);
                 }
 
-                if(xMonedas >= 799)
+                double leftPopote3Actual = Canvas.GetLeft(popote3);
+                Canvas.SetLeft(popote3, leftPopote3Actual - (100 * deltaTime.TotalSeconds));
+                if (Canvas.GetLeft(popote3) <= -100)
                 {
-                    moneda.Imagen.Visibility = Visibility.Visible;
+                    Canvas.SetLeft(popote3, 800);
+                }
+
+                double leftPopote4Actual = Canvas.GetLeft(popote4);
+                Canvas.SetLeft(popote4, leftPopote4Actual - (100 * deltaTime.TotalSeconds));
+                if (Canvas.GetLeft(popote4) <= -100)
+                {
+                    Canvas.SetLeft(popote4, 800);
+                }
+
+                double leftPopote5Actual = Canvas.GetLeft(popote5);
+                Canvas.SetLeft(popote5, leftPopote5Actual - (100 * deltaTime.TotalSeconds));
+                if (Canvas.GetLeft(popote5) <= -100)
+                {
+                    Canvas.SetLeft(popote5, 800);
+                }
+
+                double leftPopote6Actual = Canvas.GetLeft(popote6);
+                Canvas.SetLeft(popote6, leftPopote6Actual - (100 * deltaTime.TotalSeconds));
+                if (Canvas.GetLeft(popote6) <= -100)
+                {
+                    Canvas.SetLeft(popote6, 800);
+                }
+
+                double leftMoneda1Actual = Canvas.GetLeft(Moneda1);
+                Canvas.SetLeft(Moneda1, leftMoneda1Actual - (100 * deltaTime.TotalSeconds));
+                double leftMoneda2Actual = Canvas.GetLeft(Moneda2);
+                Canvas.SetLeft(Moneda2, leftMoneda2Actual - (100 * deltaTime.TotalSeconds));
+                double leftMoneda3Actual = Canvas.GetLeft(Moneda3);
+                Canvas.SetLeft(Moneda3, leftMoneda3Actual - (100 * deltaTime.TotalSeconds));
+
+                foreach (Moneda moneda in monedas)
+                {
+                    if (Canvas.GetLeft(moneda.Imagen) <= -100)
+                    {
+                        Canvas.SetLeft(moneda.Imagen, 1000);
+                    }
+                }
+
+
+                foreach (Popotes popote in popotes)
+                {
+                    if (Canvas.GetLeft(popote.Imagen) <= 170 && Canvas.GetLeft(popote.Imagen) >= 169.99)
+                    {
+                        score = score + 20;
+                        lblscore.Text = score.ToString();
+                    }
+
+                }
+
+                foreach (Moneda moneda in monedas)
+                {
+                    double xTurtle = Canvas.GetLeft(imgTurtle);
+                    double xMonedas = Canvas.GetLeft(moneda.Imagen);
+                    double yTurtle = Canvas.GetTop(imgTurtle);
+                    double yMonedas = Canvas.GetTop(moneda.Imagen);
+
+                    if (xMonedas + moneda.Imagen.Width >= xTurtle && xMonedas <= xTurtle + imgTurtle.Width && yMonedas + moneda.Imagen.Height >= yTurtle && yMonedas <= yTurtle + imgTurtle.Height)
+                    {
+                        moneda.Imagen.Visibility = Visibility.Collapsed;
+                        contadormonedas = contadormonedas + 1;
+                        lblmonedas.Text = contadormonedas.ToString();
+                    }
+
+                    if (xMonedas >= 799)
+                    {
+                        moneda.Imagen.Visibility = Visibility.Visible;
+                    }
                 }
             }
-
         }
 
        
@@ -299,6 +307,7 @@ namespace Turtles
             
             canvasStart.Visibility = Visibility.Collapsed;
             canvasChoosePlayer.Visibility = Visibility.Visible;
+            estadoActual = EstadoJuego.Menu;
         }
 
         private void btnPacoyo_Click(object sender, RoutedEventArgs e)
