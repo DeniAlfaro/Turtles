@@ -78,6 +78,7 @@ namespace Turtles
             lblCancionQ.Text = quesadilla.Cancion;
             lblComidaQ.Text = quesadilla.Comida;
 
+            
 
             // 1. establecer instrucciones
             ThreadStart threadStart = new ThreadStart(actualizar);
@@ -248,6 +249,7 @@ namespace Turtles
                     {
                         score = score + 20;
                         lblscore.Text = score.ToString();
+                        lblscore2.Text = score.ToString();
                     }
 
                 }
@@ -334,5 +336,6 @@ namespace Turtles
             miCanvas.Visibility = Visibility.Visible;
             estadoActual = EstadoJuego.Gameplay;
         }
+       
     }
 }

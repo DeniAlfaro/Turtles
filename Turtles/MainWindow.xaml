@@ -51,6 +51,8 @@
 
         <Canvas Name="canvasGameOver" Visibility="Collapsed">
             <Image Source="game over.png" Name="imgGameOver" Height="447" Width="794"></Image>
+            <TextBlock Canvas.Left="230" Canvas.Top="162" FontFamily="OCR A Std" FontSize="36">SCORE</TextBlock>
+            <TextBlock Name="lblscore2" Canvas.Left="165" Canvas.Top="210" FontSize="90" FontFamily="OCR A Std" Height="105" Width="253" TextAlignment="Center">0000</TextBlock>
         </Canvas>
 
         <Canvas Name="canvasChoosePlayer" Visibility="Collapsed">
